@@ -39,6 +39,18 @@ def printReverse(head) :
         return
     printReverse(head.next)
     print(head.data,end=" ")
+
+def ReverseLL(head):
+    prev = None
+    current = head
+    while(current is not None):
+        temp = current.next
+        current.next = prev
+        prev = current
+        current = temp
+    return prev
 node = InputLinkedList()
 PrintLL(node)
-printReverse(node)
+# printReverse(node)
+node = ReverseLL(node)
+PrintLL(node)
