@@ -1,6 +1,3 @@
-from platform import node
-
-
 class Node:
     def __init__(self,data):
         self.data = data
@@ -34,28 +31,34 @@ def PrintLL(head):
     print("None")
     return
 
-
-
-def skipMdeleteN(head, M, N) :
-    if head is None:
+def swapNodes(head, i, j) :
+    if i == j:
         return head
+    prev = None
     curr = head
-    while(head is not None):
-        count = M - 1
-        while(count > 0 and curr is not None):
-            curr = curr.next
-            count-=1
-        if curr is None:
-            return head
-        remove = curr.next
-        count = N
-        while(count > 0 and remove is not None):
-            remove = remove.next
-            count-=1
-        curr.next = remove
-        curr = remove
+    count = 0
+    while(curr is not None):
+        if count == i:
+            prev1 = prev
+            curr1 = curr
+        if count == j:
+            prev2 = prev
+            curr2 = curr
+        count+=1
+        prev = curr
+        curr = curr.next
+    if prev1 is not None:
+        prev1.next = curr2
+    else:
+        head = curr2
+    if prev2 is not None:
+        prev2.next = curr1
+    else:
+        head = curr1
+    curr1.next , curr2.next = curr2.next , curr1.next
     return head
+            
 node = InputLinkedList()
 PrintLL(node)
-node = skipMdeleteN(node,2,2)
+node = swapNodes(node,0,1)
 PrintLL(node)

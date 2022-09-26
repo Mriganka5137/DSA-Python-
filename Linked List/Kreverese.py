@@ -1,4 +1,4 @@
-from platform import node
+from turtle import update
 
 
 class Node:
@@ -35,27 +35,44 @@ def PrintLL(head):
     return
 
 
+def kReverse(head, k) :
+    curr, prev, next = head, None, None
+    count = 0
+    while curr is not None and count < k:
+        next = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next
+        count+=1
+    if next is not None:
+        head.next = kReverse(next, k)
+    return prev
 
-def skipMdeleteN(head, M, N) :
-    if head is None:
+
+
+
+
+
+
+def Reverse(head):
+    if head is None or head.next is None:
         return head
     curr = head
-    while(head is not None):
-        count = M - 1
-        while(count > 0 and curr is not None):
-            curr = curr.next
-            count-=1
-        if curr is None:
-            return head
-        remove = curr.next
-        count = N
-        while(count > 0 and remove is not None):
-            remove = remove.next
-            count-=1
-        curr.next = remove
-        curr = remove
-    return head
+    fwd = None
+    prev = None
+    while curr is not None:
+        fwd = curr.next
+        curr.next = prev
+        prev = curr
+        curr = fwd
+    return prev
+
+
+
+
+
+
 node = InputLinkedList()
 PrintLL(node)
-node = skipMdeleteN(node,2,2)
+node = kReverse(node,3)
 PrintLL(node)
