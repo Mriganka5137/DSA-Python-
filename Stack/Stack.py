@@ -1,3 +1,6 @@
+from ast import Expression
+
+
 class Stack:
     def __init__(self):
         self.__data = []
@@ -25,12 +28,26 @@ class Stack:
     def size(self):
         return len(self.__data)
         
-s = Stack()
-s.push(15)
-s.push(21)
-s.push(51)
-while s.isEmpty() is False:
-    print(s.pop())
+def isBalanced(expression) :
+    s = Stack()
+    for ele in expression:
+        if ele == '(':
+            s.push(ele)
+        else:
+            if s.top() != '(':
+                return False
+            else:
+                s.pop()
+    if s.isEmpty():
+        return True
+    else:
+        return False
 
 
-    
+
+expression = "(())"
+if isBalanced(expression) :
+	print("true")
+
+else :
+	print("false")
