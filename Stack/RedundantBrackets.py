@@ -7,23 +7,19 @@ def checkRedundantBrackets(expression) :
   count = 0
   for ele in expression:
     if ele == ')':
-      arr = check(arr)
-      
-
+      i = len(arr) -1
+      while(arr[i] != '('):
+        arr.pop()
+        count+=1
+        i-=1
+      if count <= 0:
+        return True
+      else:
+        arr.pop()
+        count=0
     else:
       arr.append(ele)
 
-
-def check(arr):
-  count = 0
-  while arr[len(arr)-1] != '(':
-    arr.pop()
-    count+=1
-  if count == 0:
-    return True
-  else:
-    arr.pop()
-    return arr
   
 
 #main
