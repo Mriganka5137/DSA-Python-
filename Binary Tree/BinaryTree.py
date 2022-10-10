@@ -4,8 +4,46 @@ class BinaryTree:
     self.right = None
     self.left = None
 
-bnt1 = BinaryTree(1)
-bnt2 = BinaryTree(2)
-bnt3 = BinaryTree(3)
-bnt1.left = bnt2
-bnt1.right = bnt3
+def PrintBinaryTree(root):
+  if root is None:
+    return
+  print(root.data)
+  PrintBinaryTree(root.left)
+  PrintBinaryTree(root.right)
+
+def PrintBinaryTreeDetailed(root):
+  if root is None:
+    return
+  print(root.data,end=":")
+  if root.left is not None:
+    print("L:",root.left.data, end=",")
+  if root.right is not None:
+    print("R:",root.right.data, end="")
+  print()
+  PrintBinaryTreeDetailed(root.left)
+  PrintBinaryTreeDetailed(root.right)
+
+def BTreeInput():
+  rootData = int(input())
+  if rootData == -1:
+    return None
+  root = BinaryTree(rootData)
+  left = BTreeInput()
+  right = BTreeInput()
+  root.left = left
+  root.right = right
+  return root
+
+
+def Largest(root):
+  if root is None:
+    return -1
+  leftSubTree = Largest(root.left)
+  rightSubTree = Largest(root.right)
+  largest = max(leftSubTree, rightSubTree, root.data)
+  return largest
+
+root = BTreeInput()
+PrintBinaryTreeDetailed(root)
+maxValue = Largest(root)
+print(maxValue)
