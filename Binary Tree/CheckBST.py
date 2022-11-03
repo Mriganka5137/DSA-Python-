@@ -19,6 +19,38 @@ def checkBST(root):
 
 def checkBST2(root):
   
+  # Base Case
+  if root is None:
+    return 100000, -100000, True
+  
+  leftMin, leftMax, leftBST = checkBST2(root.left)
+  rightMin, rightMax, rightBST = checkBST2(root.right)
+
+  maxValue = max(leftMax, rightMax, root.data)
+  minValue = min(rightMin, leftMin, root.data)
+
+  isBST = True
+  if root.data <= leftMax or root.data > rightMax:
+    isBST = False
+  if not ( leftBST) or not( rightBST):
+    isBST = False
+
+  return minValue, maxValue, isBST
+
+
+
+def checkBST3(root, min_range, max_range):
+  if root is None:
+    return True
+  
+  if (root.data < min_range or root.data > max_range):
+    return False
+  
+  isLeftSubTree = checkBST3(root.left, min_range, root.data - 1)
+  isRightSubTree = checkBST3(root.right, root.data, max_range)
+
+  return isLeftSubTree and isRightSubTree
+
 
 
 
