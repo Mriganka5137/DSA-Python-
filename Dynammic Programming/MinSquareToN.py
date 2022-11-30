@@ -33,3 +33,4 @@ n = int(input())
 dp = [-1 for i in range(n + 1)]
 ans = minSquare(n, dp)
 print(ans)
+# print(math.sqrt(3))

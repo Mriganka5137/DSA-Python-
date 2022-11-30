@@ -1,3 +1,4 @@
+import heapq
 def DownHeapify(arr, i, n):
   
   parentIndex = i
@@ -31,6 +32,7 @@ def HeapSort(arr):
   # (n//2 - 1) to 0 are not leaf nodes
 
   #This will create the CBT and satisfy min heap properties
+  n = len(arr)
   for i in range(n//2 - 1, -1, -1):
     DownHeapify(arr, i, n)
 
@@ -41,8 +43,11 @@ def HeapSort(arr):
   
 
 
-n = input()
-arr = [int(ele) for ele in input().split()]
-HeapSort(arr)
+# n = input()
+# arr = [int(ele) for ele in input().split()]
+arr= [5,21,1,34,7]
+heapq.heapify(arr)
+n = 5
+# HeapSort(arr)
 for ele in arr:
   print(ele, end=" ")
